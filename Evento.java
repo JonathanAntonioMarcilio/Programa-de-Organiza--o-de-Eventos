@@ -1,6 +1,6 @@
 public class Evento {
     int idEvento;
-    int data;
+    String data;
     String descricao;
     int vaga;
     int id;
@@ -11,7 +11,7 @@ public class Evento {
 
     public Evento(
         int idEvento,
-        int data,
+        String data,
         String descricao,
         int vaga,
         int id,
@@ -25,7 +25,7 @@ public class Evento {
         this.idLocal = idLocal;
     }
 
-    public String toString() {
-        return "Id: "+this.idEvento+" Data: "+this.data+" Descrição: "+this.descricao+" Vagas: "+this.vaga+" Id do Organizador: "+this.id+" Id Local: "+idLocal;
+    public String toString(){
+        return " ID: "+this.idEvento+" Data: "+this.data+" Descricao: "+descricao+" Quantidade de Vagas: "+vaga+" Id Organizador: "+id+" Id Local: "+idLocal;
     }
 }

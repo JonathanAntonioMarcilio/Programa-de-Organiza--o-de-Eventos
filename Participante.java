@@ -16,7 +16,7 @@ public class Participante {
     }
 
     public String toString() {
-        return "Id: " +this.id+"Nome: "+this.nome+"Telefone: "+this.telefone;
+        return " Id: " +this.id+" Nome: "+this.nome+" Telefone: "+this.telefone;
     }
 
 

@@ -184,12 +184,12 @@ public class Menu{
                         ResultSet sql = stm.executeQuery("SELECT * FROM evento");
                         while(sql.next()) {
                             System.out.println(new Evento(
-                            sql.getInt("idEvento"),
-                            sql.getInt("date"),
+                            sql.getInt("idevento"),
+                            sql.getString("date"),
                             sql.getString("descricao"),
                             sql.getInt("vagas"),
-                            sql.getInt("id"),
-                            sql.getInt("idlocal")
+                            sql.getInt("organizador_idorganizador"),
+                            sql.getInt("local_idlocal")
                         ));
                         }
                         con.close();

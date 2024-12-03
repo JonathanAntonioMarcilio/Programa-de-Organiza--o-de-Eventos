@@ -14,6 +14,6 @@ public class EventoParticipante {
     }
 
     public String toString(){
-        return "Id Evento: "+this.idEvento+"Id Participante: "+id;
+        return " Id Evento: "+this.idEvento+" Id Participante: "+this.id;
     }
 }
