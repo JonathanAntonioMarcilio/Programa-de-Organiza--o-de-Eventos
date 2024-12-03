@@ -16,7 +16,7 @@ public class Menu{
         Scanner scanner = new Scanner(System.in);
         
         int op, id, idLocal, idEvento, data, vaga;
-        String nome, email, descricao, evento, participantes, telefone;
+        String nome, email, descricao, telefone;
         
         do{
             System.out.println("Digite o Número Equivalente a Opção que Você Deseja Selecionar: ");
