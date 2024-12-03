@@ -16,19 +16,4 @@ public class Local {
     public String toString(){
         return " Id: "+this.idLocal+" Descrição: "+this.descricao+" Vaga: "+this.vaga;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
