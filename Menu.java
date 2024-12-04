@@ -29,7 +29,15 @@ public class Menu{
             System.out.println("[7] Listar Local");
             System.out.println("[8] Listar Evento");
             System.out.println("[9] Cadastrar Participante no Evento");
-            System.out.println("[10] Sair");
+            System.out.println("[10] Alterar Organizador");
+            System.out.println("[11] Alterar Participante");
+            System.out.println("[12] Alterar Local");
+            System.out.println("[13] Alterar Evento");
+            System.out.println("[14] Excluir Organizador");
+            System.out.println("[15] Excluir Participante");
+            System.out.println("[16] Excluir Local");
+            System.out.println("[17] Excluir Evento");
+            System.out.println("[18] Sair");
             op = scanner.nextInt();
             switch(op){ 
                 case 1: // Cadastrar Organizador ================================================================================================================
@@ -215,14 +223,62 @@ public class Menu{
                         System.out.println(e.getMessage());
                     }
                     break;
-                case 10: // Sair do Sistema ======================================================================================================================
+                case 10: // Alterar Organizador ========================================================================================================================
+
+
+
+                
+                    break;
+                case 11: // Alterar Participante ========================================================================================================================
+
+
+
+
+                    break;
+                case 12: // Alterar Local ========================================================================================================================
+
+
+
+
+                    break;
+                case 13: // Alterar Evento ========================================================================================================================
+
+
+
+
+                    break;
+                case 14: // Excluir Organizador ========================================================================================================================
+
+
+
+
+                    break;
+                case 15: // Excluir Participante ========================================================================================================================
+
+
+
+
+                    break;
+                case 16: // Excluir Local ========================================================================================================================
+
+
+
+
+                    break;
+                case 17: // Excluir Evento ========================================================================================================================
+
+
+
+
+                    break;
+                case 18: // Sair do Sistema ======================================================================================================================
                     System.out.println("Obrigado por usar o programa :)");
                    break;
                 default: 
                     System.out.println("Por favor, digite uma opção válida...");
                     break;
             }
-        } while(op != 10);
+        } while(op != 18);
         scanner.close();
     }
 }
