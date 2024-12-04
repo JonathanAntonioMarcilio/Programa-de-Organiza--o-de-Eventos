@@ -15,8 +15,8 @@ public class Menu{
         
         Scanner scanner = new Scanner(System.in);
         
-        int op, id, idLocal, idEvento, data, vaga;
-        String nome, email, descricao, telefone;
+        int op, id, idLocal, idEvento, vaga;
+        String nome, email, descricao, telefone, data;
         
         do{
             System.out.println("Digite o Número Equivalente a Opção que Você Deseja Selecionar: ");
@@ -106,7 +106,7 @@ public class Menu{
                         System.out.println("Digite o id do evento: ");
                         idEvento = scanner.nextInt();
                         System.out.println("Digite a data do evento: ");
-                        data = scanner.nextInt();
+                        data = scanner.next();
                         System.out.println("Digite a descrição do evento: ");
                         descricao = scanner.next();
                         System.out.println("Informe a quantidade de vagas do evento: ");
@@ -224,56 +224,270 @@ public class Menu{
                     }
                     break;
                 case 10: // Alterar Organizador ========================================================================================================================
-
-
-
-                
+                    try {
+                        System.out.println("Informe o ID de alteração: ");
+                        id = scanner.nextInt();
+                        Connection con = DriverManager.getConnection(url, user, password);
+                        Statement stm = con.createStatement();
+                        ResultSet rs = stm.executeQuery("SELECT * FROM organizador WHERE idorganizador = " + id);
+                        if(!rs.next()) {
+                            throw new Exception("Id inválido");
+                        }
+                        Organizador organizador = new Organizador(
+                            rs.getInt("idorganizador"),
+                            rs.getString("nome"),
+                            rs.getString("email")
+                        );
+                        con.close();
+                        System.out.println("Informe o nome do organizador");
+                        nome = scanner.next();
+                        System.out.println("Informe o email do organizador");
+                        email = scanner.next();
+                        
+                        con = DriverManager.getConnection(url, user, password);
+                        stm = con.createStatement();
+                        boolean sql = stm.execute("UPDATE organizador SET "
+                            + " nome = '" + organizador.nome + "'"
+                            + ", email = '" + organizador.email);
+                        if(!sql) {
+                            System.out.println("Falha na execução");
+                        }
+                        con.close();
+                    } catch (SQLException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case 11: // Alterar Participante ========================================================================================================================
+                    try {
+                        System.out.println("Informe o ID de alteração: ");
+                        id = scanner.nextInt();
+                        Connection con = DriverManager.getConnection(url, user, password);
+                        Statement stm = con.createStatement();
+                        ResultSet rs = stm.executeQuery("SELECT * FROM participante WHERE idparticipante = " + id);
+                        if(!rs.next()) {
+                            throw new Exception("Id inválido");
+                        }
+                        Participante participante = new Participante(
+                            rs.getInt("idparticipante"),
+                            rs.getString("nome"),
+                            rs.getString("telefone")
+                        );
+                        con.close();
+                        System.out.println("Informe o nome do participante");
+                        nome = scanner.next();
+                        System.out.println("Informe o telefone do participante");
+                        telefone = scanner.next();
 
-
-
-
+                        con = DriverManager.getConnection(url, user, password);
+                        stm = con.createStatement();
+                        boolean sql = stm.execute("UPDATE funcionarios SET "
+                            + " nome = '" + participante.nome+ "'"
+                            + ", email = '" + participante.telefone);
+                        if(!sql) {
+                            System.out.println("Falha na execução");
+                        }
+                        con.close();
+                    } catch (SQLException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case 12: // Alterar Local ========================================================================================================================
-
-
-
-
+                    try {
+                        System.out.println("Informe o ID de alteração: ");
+                        id = scanner.nextInt();
+                        Connection con = DriverManager.getConnection(url, user, password);
+                        Statement stm = con.createStatement();
+                        ResultSet rs = stm.executeQuery("SELECT * FROM local WHERE idlocal = " + id);
+                        if(!rs.next()) {
+                            throw new Exception("Id inválido");
+                        }
+                        Local local = new Local(
+                            rs.getInt("idlocal"),
+                            rs.getString("descricao"),
+                            rs.getInt("vagas")
+                        );
+                        con.close();
+                        System.out.println("Informe a descricao do local");
+                        descricao = scanner.next();
+                        System.out.println("Informe a quantidade de vagas do local");
+                        vaga = scanner.nextInt();
+                        
+                        con = DriverManager.getConnection(url, user, password);
+                        stm = con.createStatement();
+                        boolean sql = stm.execute("UPDATE local SET "
+                            + " nome = '" + local.descricao + "'"
+                            + ", email = '" + local.vaga);
+                        if(!sql) {
+                            System.out.println("Falha na execução");
+                        }
+                        con.close();
+                    } catch (SQLException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case 13: // Alterar Evento ========================================================================================================================
-
-
-
-
+                    try {
+                        System.out.println("Informe o ID de alteração: ");
+                        id = scanner.nextInt();
+                        Connection con = DriverManager.getConnection(url, user, password);
+                        Statement stm = con.createStatement();
+                        ResultSet rs = stm.executeQuery("SELECT * FROM evento WHERE idevento = " + id);
+                        if(!rs.next()) {
+                            throw new Exception("Id inválido");
+                        }
+                        Evento evento = new Evento(
+                            rs.getInt("idevento"),
+                            rs.getString("date"),
+                            rs.getString("descricao"),
+                            rs.getInt("vagas"),
+                            rs.getInt("organizador_idorganizador"),
+                            rs.getInt("local_idlocal")
+                        );
+                        con.close();
+                        System.out.println("Informe a data do evento");
+                        data = scanner.next();
+                        System.out.println("Informe a descrição do evento");
+                        descricao = scanner.next();
+                        System.out.println("Informe a quantidade de vagas do evento");
+                        vaga = scanner.nextInt();
+                        System.out.println("Informe o id do Organizador");
+                        id = scanner.nextInt();
+                        System.out.println("Informe o id do Local");
+                        idLocal = scanner.nextInt();
+                        
+                        con = DriverManager.getConnection(url, user, password);
+                        stm = con.createStatement();
+                        boolean sql = stm.execute("UPDATE funcionarios SET "
+                            + " data = '" + evento.data+ "'"
+                            + " descricao = '" + evento.descricao+ "'"
+                            + " vaga = '" + evento.vaga+ "'"
+                            + " id organizado = '" + evento.id+ "'"
+                            + ", id local = '" + evento.idLocal);
+                        if(!sql) {
+                            System.out.println("Falha na execução");
+                        }
+                        con.close();
+                    } catch (SQLException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case 14: // Excluir Organizador ========================================================================================================================
-
-
-
-
+                    try {
+                        System.out.println("Informe o ID de exclusão: ");
+                        id = scanner.nextInt();
+                        Connection con = DriverManager.getConnection(url, user, password);
+                        Statement stm = con.createStatement();
+                        ResultSet rs = stm.executeQuery("SELECT * FROM organizador WHERE id = " + id);
+                       
+                        if(!rs.next()) {
+                            throw new Exception("Id inválido");
+                        }
+                        Organizador organizador = new Organizador(
+                            rs.getInt("id"),
+                            rs.getString("nome"),
+                            rs.getString("email")
+                        );
+                        stm = con.createStatement();
+                        boolean sql = stm.execute("DELETE FROM organizador"
+                            + " WHERE id = " + organizador.id);
+                        if(!sql) {
+                            System.out.println("Falha na execução");
+                        }
+                        con.close();
+                    } catch (SQLException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
+                   
                 case 15: // Excluir Participante ========================================================================================================================
-
-
-
-
+                    try {
+                        System.out.println("Informe o ID de exclusão: ");
+                        id = scanner.nextInt();
+                        Connection con = DriverManager.getConnection(url, user, password);
+                        Statement stm = con.createStatement();
+                        ResultSet rs = stm.executeQuery("SELECT * FROM participante WHERE id = " + id);
+                       
+                        if(!rs.next()) {
+                            throw new Exception("Id inválido");
+                        }
+                        Participante participante = new Participante(
+                            rs.getInt("id"),
+                            rs.getString("nome"),
+                            rs.getString("telefone")
+                           
+                        );
+                        stm = con.createStatement();
+                        boolean sql = stm.execute("DELETE FROM participante "
+                            + " WHERE id = " + participante.id);
+                        if(!sql) {
+                            System.out.println("Falha na execução");
+                        }
+                        con.close();
+                    } catch (SQLException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case 16: // Excluir Local ========================================================================================================================
-
-
-
-
+                    try {
+                        System.out.println("Informe o ID de exclusão: ");
+                        id = scanner.nextInt();
+                        Connection con = DriverManager.getConnection(url, user, password);
+                        Statement stm = con.createStatement();
+                        ResultSet rs = stm.executeQuery("SELECT * FROM local WHERE id = " + id);
+                       
+                        if(!rs.next()) {
+                            throw new Exception("Id inválido");
+                        }
+                        Local local = new Local(
+                            rs.getInt("id"),
+                            rs.getString("descricao"),
+                            rs.getInt("vagas")
+                        );
+                        stm = con.createStatement();
+                        boolean sql = stm.execute("DELETE FROM local "
+                            + " WHERE id = " + local.idLocal);
+                        if(!sql) {
+                            System.out.println("Falha na execução");
+                        }
+                        con.close();
+                    } catch (SQLException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 case 17: // Excluir Evento ========================================================================================================================
-
-
-
-
-                    break;
+                    try {
+                        System.out.println("Informe o ID de exclusão: ");
+                        id = scanner.nextInt();
+                        Connection con = DriverManager.getConnection(url, user, password);
+                        Statement stm = con.createStatement();
+                        ResultSet rs = stm.executeQuery("SELECT * FROM evento WHERE id = " + id);
+                       
+                        if(!rs.next()) {
+                            throw new Exception("Id inválido");
+                        }
+                        Evento evento = new Evento(
+                            rs.getInt("idEvento"),
+                            rs.getString("data"),
+                            rs.getString("descricao"),
+                            rs.getInt("vagas"),
+                            rs.getInt("idOrganizador"),
+                            rs.getInt("idLocal")
+                           
+                            );
+                        stm = con.createStatement();
+                        boolean sql = stm.execute("DELETE FROM funcionarios "
+                            + " WHERE id = " + evento.id);
+                        if(!sql) {
+                            System.out.println("Falha na execução");
+                        }
+                        con.close();
+                    } catch (SQLException e) {
+                        System.out.println(e.getMessage());
+                    }
+                        break;
                 case 18: // Sair do Sistema ======================================================================================================================
                     System.out.println("Obrigado por usar o programa :)");
-                   break;
+                    break;
                 default: 
                     System.out.println("Por favor, digite uma opção válida...");
                     break;
