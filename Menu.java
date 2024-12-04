@@ -243,7 +243,7 @@ public class Menu{
                         nome = scanner.next();
                         System.out.println("Informe o email do organizador");
                         email = scanner.next();
-                        
+                        // Conexão com o banco de dados para alterar os valores no banco através do UPDATE
                         con = DriverManager.getConnection(url, user, password);
                         stm = con.createStatement();
                         boolean sql = stm.execute("UPDATE organizador SET "
@@ -277,7 +277,7 @@ public class Menu{
                         nome = scanner.next();
                         System.out.println("Informe o telefone do participante");
                         telefone = scanner.next();
-
+                        // Conexão com o banco de dados para alterar os valores no banco através do UPDATE
                         con = DriverManager.getConnection(url, user, password);
                         stm = con.createStatement();
                         boolean sql = stm.execute("UPDATE funcionarios SET "
@@ -311,7 +311,7 @@ public class Menu{
                         descricao = scanner.next();
                         System.out.println("Informe a quantidade de vagas do local");
                         vaga = scanner.nextInt();
-                        
+                        // Conexão com o banco de dados para alterar os valores no banco através do UPDATE
                         con = DriverManager.getConnection(url, user, password);
                         stm = con.createStatement();
                         boolean sql = stm.execute("UPDATE local SET "
@@ -354,7 +354,7 @@ public class Menu{
                         id = scanner.nextInt();
                         System.out.println("Informe o id do Local");
                         idLocal = scanner.nextInt();
-                        
+                        // Conexão com o banco de dados para alterar os valores no banco através do UPDATE
                         con = DriverManager.getConnection(url, user, password);
                         stm = con.createStatement();
                         boolean sql = stm.execute("UPDATE funcionarios SET "
@@ -378,7 +378,6 @@ public class Menu{
                         Connection con = DriverManager.getConnection(url, user, password);
                         Statement stm = con.createStatement();
                         ResultSet rs = stm.executeQuery("SELECT * FROM organizador WHERE id = " + id);
-                       
                         if(!rs.next()) {
                             throw new Exception("Id inválido");
                         }
@@ -398,7 +397,6 @@ public class Menu{
                         System.out.println(e.getMessage());
                     }
                     break;
-                   
                 case 15: // Excluir Participante ========================================================================================================================
                     try {
                         System.out.println("Informe o ID de exclusão: ");
